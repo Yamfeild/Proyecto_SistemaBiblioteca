@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="background"></div>  <!-- Capa de fondo -->
+        <h1>Bienvenido al Sistema de Biblioteca</h1>
+        <ul class="menu">
+            <li><a href="{{ url_for('listar_libros') }}">📚 Ver Libros Disponibles</a></li>
+            <li><a href="{{ url_for('listar_usuarios') }}">👤 Gestionar Usuarios</a></li>
+            <li><a href="{{ url_for('listar_prestamos') }}">📋 Gestionar Préstamos</a></li>
+            <li><a href="{{ url_for('listar_multas') }}">📨 Gestionar Multas</a></li>
+            <li><a href="{{ url_for('consultas') }}">🔍 Consultas Especiales</a></li>
+        </ul>
+    </div>
+</body>
+
+</html>

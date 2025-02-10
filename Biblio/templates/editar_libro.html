@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Libro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>✏️ Editar Libro</h1>
+    <a href="{{ url_for('listar_libros') }}">🔙 Volver a la Lista</a>
+    <form method="POST">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" name="titulo" value="{{ libro.titulo }}" required><br><br>
+        <label for="autor">Autor:</label>
+        <input type="text" id="autor" name="autor" value="{{ libro.autor }}" required><br><br>
+        <label for="editorial">Editorial:</label>
+        <input type="text" id="editorial" name="editorial" value="{{ libro.editorial }}"><br><br>
+        <label for="anio_publicacion">Año de Publicación:</label>
+        <input type="date" id="anio_publicacion" name="anio_publicacion" value="{{ libro.anio_publicacion }}"><br><br>
+        <label for="genero">Género:</label>
+        <input type="text" id="genero" name="genero" value="{{ libro.genero }}"><br><br>
+        <label for="estado">Estado:</label>
+        <input type="text" id="estado" name="estado" value="{{ libro.estado }}"><br><br>
+        <label for="categoria">Categoría:</label>
+        <input type="text" id="categoria" name="categoria" value="{{ libro.categoria }}"><br><br>
+        <label for="cantidad_disponible">Cantidad Disponible:</label>
+        <input type="number" id="cantidad_disponible" name="cantidad_disponible" value="{{ libro.cantidad_disponible }}" required><br><br>
+        <button type="submit">Actualizar</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Libros</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Lista de Libros</h1>
+        <a class="btn" href="{{ url_for('index') }}">🏠 Volver al Inicio</a>
+        <a class="btn btn-primary" href="{{ url_for('crear_libro') }}">➕ Crear Libro</a>
+        
+        <table>
+            <tr>
+                <th>ISBN</th>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Editorial</th>
+                <th>Año</th>
+                <th>Género</th>
+                <th>Estado</th>
+                <th>Categoría</th>
+                <th>Cantidad Disponible</th>
+                <th>Acciones</th> <!-- Nueva columna para los botones -->
+            </tr>
+            {% for libro in libros %}
+            <tr>
+                <td>{{ libro.isbn }}</td>
+                <td>{{ libro.titulo }}</td>
+                <td>{{ libro.autor }}</td>
+                <td>{{ libro.editorial }}</td>
+                <td>{{ libro.anio_publicacion }}</td>
+                <td>{{ libro.genero }}</td>
+                <td>{{ libro.estado }}</td>
+                <td>{{ libro.categoria }}</td>
+                <td>{{ libro.cantidad_disponible }}</td>
+                <td class="acciones">
+                    <a class="btn btn-edit" href="{{ url_for('editar_libro', isbn=libro.isbn) }}">✏️ Editar</a>
+                    <form action="{{ url_for('eliminar_libro', isbn=libro.isbn) }}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar este libro?');">
+                        <button class="btn btn-delete" type="submit">🗑️ Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

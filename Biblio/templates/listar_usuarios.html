@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Usuarios</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>👥 Lista de Usuarios</h1>
+    <a href="{{ url_for('index') }}">🏠 Volver al Inicio</a>
+    <a href="{{ url_for('crear_usuario') }}">➕ Crear Usuario</a>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Dirección</th>
+            <th>Acciones</th>
+        </tr>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{ usuario.id_usuario }}</td>
+            <td>{{ usuario.nombres }}</td>
+            <td>{{ usuario.apellidos }}</td>
+            <td>{{ usuario.direccion }}</td>
+            <td>
+                <a href="{{ url_for('editar_usuario', id=usuario.id_usuario) }}">✏️ Editar</a>
+                <form action="{{ url_for('eliminar_usuario', id=usuario.id_usuario) }}" method="POST" style="display:inline;">
+                    <button type="submit">🗑️ Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

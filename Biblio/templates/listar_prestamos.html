@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Préstamos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Lista de Préstamos</h1>
+        <a href="{{ url_for('index') }}">🏠 Volver al Inicio</a>
+<a href="{{ url_for('crear_prestamo') }}">➕ Crear Préstamo</a>
+<table>
+    <tr>
+        <th>ID Préstamo</th>
+        <th>Fecha Préstamo</th>
+        <th>Fecha Devolución</th>
+        <th>Estado</th>
+        <th>Usuario</th>
+        <th>Bibliotecario</th>
+        <th>Libro</th>
+        <th>Cantidad</th>
+    </tr>
+    {% for prestamo in prestamos %}
+    <tr>
+        <td>{{ prestamo.idPrestamo }}</td>
+        <td>{{ prestamo.fecha_Prestamo }}</td>
+        <td>{{ prestamo.fecha_Devolucion }}</td>
+        <td>{{ prestamo.estado }}</td>
+        <td>{{ prestamo.usuario_nombres }} {{ prestamo.usuario_apellidos }}</td>
+        <td>{{ prestamo.bibliotecario_nombres }} {{ prestamo.bibliotecario_apellidos }}</td>
+        <td>{{ prestamo.titulo }}</td>
+        <td>{{ prestamo.cantidad }}</td>
+        <td>
+            <a href="{{ url_for('editar_prestamo', id=prestamo.idPrestamo) }}">✏️ Editar</a>
+            <form action="{{ url_for('eliminar_prestamo', id=prestamo.idPrestamo) }}" method="POST" style="display:inline;">
+                <button type="submit">🗑️ Eliminar</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+</body>
+</html>

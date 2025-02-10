@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libros Más Solicitados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Libros Más Solicitados</h1>
+        <a href="{{ url_for('consultas') }}">🔙 Volver a Consultas</a>
+        <table>
+            <tr>
+                <th>ISBN</th>
+                <th>Título</th>
+                <th>Total Préstamos</th>
+            </tr>
+            {% for libro in libros %}
+            <tr>
+                <td>{{ libro.isbn }}</td>
+                <td>{{ libro.titulo }}</td>
+                <td>{{ libro.total_prestamos }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

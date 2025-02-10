@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Préstamos de Libros</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    
+</head>
+<body>
+    <h1>📚 Lista de Préstamos de Libros</h1>
+    <a href="{{ url_for('index') }}">🏠 Volver al Inicio</a>
+    <a href="{{ url_for('crear_prestamo_libro') }}">➕ Crear Préstamo de Libro</a>
+    <table border="1">
+        <tr>
+            <th>ID Préstamo Libro</th>
+            <th>ID Préstamo</th>
+            <th>ISBN</th>
+            <th>Cantidad</th>
+            <th>Acciones</th>
+        </tr>
+        {% for prestamo_libro in prestamo_libros %}
+        <tr>
+            <td>{{ prestamo_libro.idPrestamo_Libro }}</td>
+            <td>{{ prestamo_libro.idPrestamo }}</td>
+            <td>{{ prestamo_libro.isbn }}</td>
+            <td>{{ prestamo_libro.cantidad }}</td>
+            <td>
+                <form action="{{ url_for('eliminar_prestamo_libro', id=prestamo_libro.idPrestamo_Libro) }}" method="POST" style="display:inline;">
+                    <button type="submit">🗑️ Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

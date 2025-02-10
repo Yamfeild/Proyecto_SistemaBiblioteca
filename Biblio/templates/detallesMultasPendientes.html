@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios con Multas Pendientes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>💰 Multas con Detalles de Usuario y Fecha</h1>
+        <a href="{{ url_for('consultas') }}">🔙 Volver a Consultas</a>
+        <table>
+            <tr>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Fecha Emision</th>
+                <th>Monto</th>
+                <th>Estado</th>
+            </tr>
+            {% for pendientes in pendiente %}
+            <tr>
+                <td>{{ pendientes.nombres }}</td>
+                <td>{{ pendientes.apellidos }}</td>
+                <td>{{ pendientes.fechaEmision }}</td>
+                <td>${{ pendientes.monto }}</td>
+                <td>{{ pendientes.estado }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

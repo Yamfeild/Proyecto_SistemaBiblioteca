@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Multas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>💰 Lista de Multas</h1>
+    <a href="{{ url_for('index') }}">🏠 Volver al Inicio</a>
+    <a href="{{ url_for('crear_multa') }}">➕ Crear Multa</a>
+    <table border="1">
+        <tr>
+            <th>ID Multa</th>
+            <th>Fecha Emisión</th>
+            <th>Monto</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+        {% for multa in multas %}
+        <tr>
+            <td>{{ multa.idMulta }}</td>
+            <td>{{ multa.fechaEmision }}</td>
+            <td>${{ multa.monto }}</td>
+            <td>{{ multa.estado }}</td>
+            <td>
+                <a href="{{ url_for('editar_multa', id=multa.idMulta) }}">✏️ Editar</a>
+                <form action="{{ url_for('eliminar_multa', id=multa.idMulta) }}" method="POST" style="display:inline;">
+                    <button type="submit">🗑️ Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
